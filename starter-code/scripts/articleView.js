@@ -64,6 +64,17 @@ articleView.handleCategoryFilter = function() {
   //       When the blank (default) option is selected, show all the articles, except for the template.
   //       Be sure to reset the #author-filter while you are at it!
 
+  $('#category-filter').on('change', function() {
+    if ($(this).val()) {
+      $('article').hide('fast');
+      $('article[data-category="' + $(this).val() + '"]').fadeIn('slow');
+
+    } else {
+      $('article').show();
+      $('article.template').hide();
+    }
+    $('#author-filter').val('');
+  });
 };
 
 articleView.handleMainNav = function() {
@@ -94,4 +105,5 @@ articleView.setTeasers = function() {
 $(document).ready(function() {
   articleView.populateFilters();
   articleView.handleAuthorFilter();
+  articleView.handleCategoryFilter();
 });
