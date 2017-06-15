@@ -97,12 +97,19 @@ articleView.setTeasers = function() {
   //       process any .read-on clicks that happen within child nodes.
 
   // STRETCH GOAl!: change the 'Read On' link to 'Show Less'
-
+  $('article').each((ind, art) => $($(art).find('.read-on')).on('click', function(e) {
+    e.preventDefault();
+    $($(art).find('.article-body *:nth-of-type(n+2)')).show();
+    $(this).hide();
+  }));
 };
 
 // TODO: Call all of the above functions, once we are sure the DOM is ready.
 $(document).ready(function() {
-
+  articleView.handleAuthorFilter();
+  articleView.handleCategoryFilter();
+  articleView.handleMainNav();
+  articleView.setTeasers();
 })
 
 articleView.populateFilters();
