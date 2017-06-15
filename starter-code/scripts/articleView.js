@@ -79,7 +79,7 @@ articleView.handleMainNav = function() {
     $('.tab-content').hide();
     var sectionId = $(this).attr('data-content');
     $('section#' + sectionId).show();
-  })
+  });
 
   $('.main-nav .tab:first').click(); // Let's now trigger a click on the first .tab element, to set up the page.
 };
@@ -94,7 +94,18 @@ articleView.setTeasers = function() {
   //       process any .read-on clicks that happen within child nodes.
 
   // STRETCH GOAl!: change the 'Read On' link to 'Show Less'
+  $('#articles').on('click','.read-on', function(event) {
+    var $readOn = $(this);
+    $readOn.prev('.article-body').children('*:nth-of-type(n+2)').toggle();
 
+    if ($readOn.text().startsWith('R')) {
+      $readOn.text('show less ');
+    } else {
+      $readOn.text('Read on');
+    }
+
+    event.preventDefault();
+  });
 };
 
 // TODO: Call all of the above functions, once we are sure the DOM is ready.
