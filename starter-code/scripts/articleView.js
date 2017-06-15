@@ -38,7 +38,7 @@ articleView.handleAuthorFilter = function() {
     //         defining. "$(this)" is using jQuery to select that element, so we can chain jQuery methods
     //         onto it.
     if ($(this).val()) {
-      // TODO: If the select box was changed to an option that has a value, we need to hide all the articles,
+      // Done: If the select box was changed to an option that has a value, we need to hide all the articles,
       //       and then show just the ones that match for the author that was selected.
       //       Use an "attribute selector" to find those articles, and fade them in for the reader.
       $('article').filter((ind, art) => $(art).attr('data-author') != $(this).val()).each(
@@ -47,7 +47,7 @@ articleView.handleAuthorFilter = function() {
       var selectedItem = $('article').filter((ind, art) => $(art).attr('data-author') === $(this).val())[0];
       $(selectedItem).show();
     } else {
-      // TODO: If the select box was changed to an option that is blank, we should
+      // Done: If the select box was changed to an option that is blank, we should
       //       show all the articles, except the one article we are using as a template.
       $('article').each((ind, art) => $(art).show());
     }
@@ -60,7 +60,18 @@ articleView.handleCategoryFilter = function() {
   //       When an option with a value is selected, hide all the articles, then reveal the matches.
   //       When the blank (default) option is selected, show all the articles, except for the template.
   //       Be sure to reset the #author-filter while you are at it!
+  $('#category-filter').on('change', function() {
+    if ($(this).val()) {
+      $('article').filter((ind, art) => $(art).attr('data-category') != $(this).val()).each(
+        (ind, art) =>$(art).hide());
 
+      var selectedItem = $('article').filter((ind, art) => $(art).attr('data-category') === $(this).val())[0];
+      $(selectedItem).show();
+    } else {
+      $('article').each((ind, art) => $(art).show());
+    }
+    $('#author-filter').val('');
+  });
 };
 
 articleView.handleMainNav = function() {
