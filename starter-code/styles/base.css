@@ -27,7 +27,7 @@ address {
 
 a, a:link, a:active {
   text-decoration: none;
-  color: #777;
+  color: green;
 }
 
 a:hover, a:focus {
@@ -35,4 +35,16 @@ a:hover, a:focus {
 }
 
 a:visited {
+  color: #777;
+}
+
+
+main {
+  padding-left: 40px;
+  margin: 30px auto;
+  width: 960px;
+}
+
+hr {
+  color: green;
 }
