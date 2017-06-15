@@ -31,7 +31,7 @@ articleView.handleAuthorFilter = function() {
   $('#author-filter').on('change', function() {
     if ($(this).val()) {
       $('article').hide();
-      $('article[data-author="this.val()"]').show();
+      $('article[data-author="'+ $(this).val() +'"]').show();
     } else {
       $('article').show();
     }
@@ -43,7 +43,7 @@ articleView.handleCategoryFilter = function() {
   $('#category-filter').on('change', function() {
     if ($(this).val()) {
       $('article').hide();
-      $('article[data-category="this.val()"]').show();
+      $('article[data-category="'+ $(this).val() +'"]').show();
     } else {
       $('article').show();
     }
@@ -77,11 +77,10 @@ articleView.setTeasers = function() {
   //       process any .read-on clicks that happen within child nodes.
 
   // STRETCH GOAl!: change the 'Read On' link to 'Show Less'
-  var $read = $('.read-on');
 
-  $('#articles').on('click', $read, function(){
-    $(this).preventDefault();
-    $(this + '~ .article-body *:nth-of-type(n+2)').show();
+  $('#articles').on('click', '.read-on', function(hash){
+    hash.preventDefault();
+    $(this).parent().find(':hidden').show();
   });
 
 };
