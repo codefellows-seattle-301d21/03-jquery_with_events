@@ -14,6 +14,8 @@ articleView.populateFilters = function() {
       //       that we can append to the #author-filter select element.
       authorName = $(this).attr('data-author');
       optionTag = '<option value="' + authorName + '">' + authorName + '</option>';
+      // <option value="authorName">authorName</option>;
+      // <option value="Kevin Bacon">Kevin Bacon</option>;
 
       if ($('#author-filter option[value="' + authorName + '"]').length === 0) {
         $('#author-filter').append(optionTag);
@@ -41,9 +43,15 @@ articleView.handleAuthorFilter = function() {
       //       and then show just the ones that match for the author that was selected.
       //       Use an "attribute selector" to find those articles, and fade them in for the reader.
 
+      $('article').hide('fast');
+      $('article[data-author="' + $(this).val() + '"]').fadeIn('slow');
+
     } else {
       // TODO: If the select box was changed to an option that is blank, we should
       //       show all the articles, except the one article we are using as a template.
+
+      $('article').show();
+      $('article.template').hide();
 
     }
     $('#category-filter').val('');
@@ -84,5 +92,6 @@ articleView.setTeasers = function() {
 
 // TODO: Call all of the above functions, once we are sure the DOM is ready.
 $(document).ready(function() {
-
-})
+  articleView.populateFilters();
+  articleView.handleAuthorFilter();
+});
