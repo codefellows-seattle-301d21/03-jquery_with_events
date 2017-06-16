@@ -33,7 +33,7 @@ articleView.handleAuthorFilter = function() {
       $('article').hide();
       $('article[data-author="'+ $(this).val() +'"]').show();
     } else {
-      $('article').show();
+      $('article:not(.template)').show();
     }
     $('#category-filter').val('');
   });
